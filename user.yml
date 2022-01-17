@@ -5,7 +5,7 @@
   gather_facts: false
   vars:
     - user: sysmon
-    - password: $6$8IAGh7Gu2ugAB
+    - password: mobilink1
   tasks:
       - name: Create a login user
         user:
