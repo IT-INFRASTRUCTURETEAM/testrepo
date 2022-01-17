@@ -10,7 +10,8 @@
       - name: Create a login user
         user:
           name: "{{ user }}"
-          password: "{{ password }}"
+          #password: "{{ password }}"
+          password: {{ password | password_hash('sha512') }}
           groups:
             - wheel
           state: present
