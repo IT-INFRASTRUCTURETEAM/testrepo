@@ -5,13 +5,13 @@
   gather_facts: false
   vars:
     - user: sysmon
-    - password: mobilink1
+    - password: $6$n1MRED2eOCfkscSt$zCj.ivyBBdXuygN1bzaeV9ZV2IQCdAAPOjTp8sIEqTkbA2YFWW1xgPRDEUGAlU9QAXzf6NJN0sjeH4T98cHCE.
   tasks:
       - name: Create a login user
         user:
           name: "{{ user }}"
-          #password: "{{ password }}"
-          password: {{ password | password_hash('sha512') }}
+          password: "{{ password }}"
+          #password: {{ password | password_hash('sha512') }}
           groups:
             - wheel
           state: present
