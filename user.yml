@@ -14,7 +14,7 @@
           groups:
             - wheel
           state: present
-	  - name: Add {{ user }} to sudoers file
+      - name: Add {{ user }} to sudoers file
         ansible.builtin.lineinfile:
           path: /etc/sudoers
           regexp: '^{{ user }}'
