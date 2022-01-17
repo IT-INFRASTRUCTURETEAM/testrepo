@@ -1,0 +1,22 @@
+---
+- name: Create user on a linux server
+  hosts: all
+  become: yes
+  gather_facts: false
+  vars:
+    - user: sysmon
+    - password: $6$8IAGh7Gu2ugAB
+  tasks:
+      - name: Create a login user
+        user:
+          name: "{{ user }}"
+          password: "{{ password }}"
+          groups:
+            - wheel
+          state: present
+	  - name: Add {{ user }} to sudoers file
+        ansible.builtin.lineinfile:
+          path: /etc/sudoers
+          regexp: '^{{ user }}'
+          line: '{{ user }} ALL=(ALL) NOPASSWD: ALL'
+          validate: 'visudo -cf %s'
